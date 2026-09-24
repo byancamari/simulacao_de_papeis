@@ -9,6 +9,7 @@ class Decisor(Node):
 
         # Guarda a última distância recebida de cada robô.
         self.distancias = {}
+        self.publicador_papeis = self.create_publisher(String, '/papeis', 10)
 
         self.inscricao = self.create_subscription(
             String,
@@ -16,7 +17,7 @@ class Decisor(Node):
             self.receber_deteccao,
             10
         )
-        self.timer = self.create_timer(1.0, self.decidir_papeis)
+        self.timer = self.create_timer(4.0, self.decidir_papeis)
         self.get_logger().info('Nó decisor iniciado')
 
     def receber_deteccao(self, mensagem):
@@ -50,6 +51,15 @@ class Decisor(Node):
             f'Robô {apoio}: apoio'
         )
 
+        
+        for robot_id, papel in (
+            (atacante, 'atacante'),
+            (goleiro, 'goleiro'),
+            (apoio, 'apoio'),
+        ):
+            mensagem = String()
+            mensagem.data = f'{robot_id},{papel},{self.distancias[robot_id]:.2f}'
+            self.publicador_papeis.publish(mensagem)
 
 def main(args=None):
     rclpy.init(args=args)
@@ -59,7 +69,7 @@ def main(args=None):
         rclpy.spin(decisor)
     finally:
         decisor.destroy_node()
-        rclpy.shutdown()
+        rclpy.try_shutdown()
 
 
 if __name__ == '__main__':

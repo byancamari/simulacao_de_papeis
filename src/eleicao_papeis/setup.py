@@ -22,9 +22,11 @@ setup(
             'pytest',
         ],
     },
-    entry_points={
+       entry_points={
         'console_scripts': [
             'detector = eleicao_papeis.detector:main',
+            'decisor = eleicao_papeis.decisor:main',
+            'monitor = eleicao_papeis.monitor:main',
         ],
     },
 )
