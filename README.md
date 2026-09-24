@@ -15,7 +15,7 @@ Simulação de três robôs que detectam a distância até a bola e recebem os p
 Requer ROS 2 Jazzy e `colcon`. Depois de clonar o repositório, entre na pasta criada:
 
 ```bash
-git clone https://github.com/byancamari/byancamari-simulacao_de_papeis.git
+git clone https://github.com/byancamari/simulacao_de_papeis.git
 cd byancamari-simulacao_de_papeis
 source /opt/ros/jazzy/setup.bash
 colcon build --packages-select eleicao_papeis
