@@ -13,8 +13,8 @@ setup(
     ],
     install_requires=['setuptools'],
     zip_safe=True,
-    maintainer='lk',
-    maintainer_email='legl@cin.ufpe.br',
+    maintainer='Byanca Maria da Silva',
+    maintainer_email='byancamari4@gmail.com',
     description='TODO: Package description',
     license='TODO: License declaration',
     extras_require={
